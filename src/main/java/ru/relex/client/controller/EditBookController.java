@@ -52,12 +52,9 @@ public class EditBookController {
     private void saveBook() throws IOException {
         if (isInputValid()) {
             book.setTitle(bookNameField.getText());
-            //book.setAuthor(bookAuthorField.getText());
-            //book.setPublishing(bookPublisherField.getText());
             book.setTypeBook(bookTypeBookField.getText());
             book.setYear(bookYearField.getText());
             book.setId(BookDao.sendBookAndGetData(book).getId());
-
             okClicked = true;
             editDialogStage.close();
         }

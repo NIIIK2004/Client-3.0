@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ru.relex.client.Entity.AuthorEntity;
 import ru.relex.client.Entity.BookEntity;
+import ru.relex.client.controller.EditAuthorController;
 import ru.relex.client.controller.EditBookController;
 import ru.relex.client.controller.MainScreenController;
 
@@ -33,7 +35,7 @@ public class MainApp extends Application {
         }
     }
 
-    public static boolean showPersonEditDialog(BookEntity book) {
+    public static boolean showEditDialogBook(BookEntity book) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/EditBook.fxml"));
@@ -50,6 +52,32 @@ public class MainApp extends Application {
             EditBookController controller = loader.getController();
             controller.setEditDialogStage(dialogStage);
             controller.setLabels(book);
+
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean showEditDialogAuthor(AuthorEntity author) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/EditAuthor.fxml"));
+            AnchorPane anchorPane = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setResizable(false);
+            dialogStage.setTitle("Редактирование автора");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+
+            Scene scene = new Scene(anchorPane);
+            dialogStage.setScene(scene);
+
+            EditAuthorController controller = loader.getController();
+            controller.setEditDialogStage(dialogStage);
+            controller.setLabels(author);
 
             dialogStage.showAndWait();
             return controller.isOkClicked();

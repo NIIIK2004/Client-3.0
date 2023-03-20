@@ -6,8 +6,6 @@ public class ValidationBookUtils {
     public static boolean validateBook(BookEntity book) {
         StringBuilder errorMessage = new StringBuilder();
         String title = book.getTitle();
-        //String author = book.getAuthor();
-        //String publishing = book.getPublishing();
         String typeBook = book.getTypeBook();
         String year = String.valueOf(book.getYear());
 

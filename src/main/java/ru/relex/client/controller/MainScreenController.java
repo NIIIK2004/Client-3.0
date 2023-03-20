@@ -6,7 +6,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,6 +32,9 @@ public class MainScreenController {
     @Setter
     private Stage stage;
 
+    @FXML
+    private MainScreenController authorTabPage;
+    @FXML private MainScreenController fooTabPageController;
     @FXML
     private TableView<BookEntity> tableBooks;
     @FXML
@@ -61,7 +66,7 @@ public class MainScreenController {
     @FXML
     private void clickAddBook() throws IOException {
         BookEntity book = BookEntity.getNullObject();
-        MainApp.showPersonEditDialog(book);
+        MainApp.showEditDialogBook(book);
         if (ValidationBookUtils.validateBook(book)) {
             addBook(book);
         }
@@ -82,7 +87,7 @@ public class MainScreenController {
     private void clickEditBook() throws IOException {
         BookEntity selectedBook = tableBooks.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
-            MainApp.showPersonEditDialog(selectedBook);
+            MainApp.showEditDialogBook(selectedBook);
             updateBook(selectedBook);
         } else {
             alerts.showNotSelected();
@@ -119,6 +124,24 @@ public class MainScreenController {
         BookDao.updateBook(book);
         int bookIndex = booksData.indexOf(book);
         booksData.set(bookIndex, book);
+    }
+
+    public void clickAddAuthor(ActionEvent event) {
+    }
+
+    public void clickEditAuthor(ActionEvent event) {
+    }
+
+    public void clickDeleteAuthor(ActionEvent event) {
+    }
+
+    public void clickAddPublishing(ActionEvent event) {
+    }
+
+    public void clickEditPublishing(ActionEvent event) {
+    }
+
+    public void clickDeletePublishing(ActionEvent event) {
     }
 
     /* @FXML
